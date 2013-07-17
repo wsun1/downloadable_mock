@@ -1,0 +1,82 @@
+Name: downloadable-mock
+Cartridge-Short-Name: DOWNLOADABLEMOCK
+Display-Name: Downloadable Mock Cartridge 0.1
+Description: "A downloadable mock cartridge for development use only."
+Version: '0.1'
+Versions: ['0.1', '0.2']
+License: ASL 2.0
+Vendor: 123_test_bmeng
+Cartridge-Version: 0.0.1
+Cartridge-Vendor: 123_test_openshift
+#Source-Url: https://github.com/bmeng/downloadable-mock.git
+#Source-Url: https://github.com/bmeng/downloadable-mock/raw/master/downloadable-mock.tar
+#Source-Url: https://github.com/bmeng/downloadable-mock/raw/master/downloadable-mock.tar.gz
+Source-Url: https://github.com/bmeng/downloadable-mock/raw/master/downloadable-mock.zip
+#Source-Url: https://github.com/bmeng/downloadable-mock/raw/master/test.zip
+#Source-Url: file:///root/downloadable-mock
+Categories:
+  - service
+  - web_framework
+Provides:
+  - downloadable-mock-0.1
+  - "downloadable-mock"
+Cart-Data:
+  - Key: OPENSHIFT_DOWNLOADABLEMOCK_EXAMPLE
+    Type: environment
+    Description: "An example environment variable using ERB processing"
+Group-Overrides:
+  - components:
+    - downloadable-mock-0.1
+    - web_proxy
+Publishes:
+  publish-http-url:
+    Type: "NET_TCP:httpd-proxy-info"
+  publish-gear-endpoint:
+    Type: "NET_TCP:gear-endpoint-info"
+Subscribes:
+  set-db-connection-info:
+    Type: "ENV:NET_TCP:db:connection-info"
+    Required: false
+  set-nosql-db-connection-info:
+    Type: "ENV:NET_TCP:nosqldb:connection-info"
+    Required: false
+Endpoints:
+  - Private-IP-Name:   EXAMPLE_IP1
+    Private-Port-Name: EXAMPLE_PORT1
+    Private-Port:      8080
+    Public-Port-Name:  EXAMPLE_PUBLIC_PORT1
+    Mappings:
+      - Frontend:      ""
+        Backend:       ""
+        Options:       { websocket: true }
+      - Frontend:      "/front1a"
+        Backend:       "/back1a"
+      - Frontend:      "/health"
+        Backend:       ""
+        Options:       { health: true }
+  - Private-IP-Name:   EXAMPLE_IP1
+    Private-Port-Name: EXAMPLE_PORT2
+    Private-Port:      8081
+    Public-Port-Name:  EXAMPLE_PUBLIC_PORT2
+  - Private-IP-Name:   EXAMPLE_IP1
+    Private-Port-Name: EXAMPLE_PORT3
+    Private-Port:      8082
+    Public-Port-Name:  EXAMPLE_PUBLIC_PORT3
+  - Private-IP-Name:   EXAMPLE_IP2
+    Private-Port-Name: EXAMPLE_PORT4
+    Private-Port:      9090
+Scaling:
+  Min: 1
+  Max: -1
+Install-Build-Required: false
+Version-Overrides:
+  '0.2':
+    Display-Name: Downloadable Mock Cartridge 0.2
+    Install-Build-Required: true
+    Provides:
+      - downloadable-mock-0.2
+      - "downloadable-mock"
+    Group-Overrides:
+      - components:
+        - downloadable-mock-0.2
+        - web_proxy

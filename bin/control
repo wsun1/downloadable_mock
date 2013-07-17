@@ -1,0 +1,57 @@
+#!/bin/bash -eu
+echo "CONTROL_SCRIPT"
+
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+source $OPENSHIFT_DOWNLOADABLEMOCK_DIR/mock.conf
+
+function start {
+  touch $MOCK_STATE/control_start
+  touch $MOCK_STATE/mock_process
+}
+
+function stop {
+  touch $MOCK_STATE/control_stop
+  rm -f $MOCK_STATE/mock_process
+}
+
+function restart {
+  touch $MOCK_STATE/control_restart
+  stop
+  start
+}
+
+function status {
+  client_result "This is client status output from the mock cartridge"
+  touch $MOCK_STATE/control_status
+  [ -f $MOCK_STATE/mock_process ]
+}
+
+function build {
+  echo "Mock building..."
+  touch $MOCK_STATE/control_build
+  echo "Mock successfully built."
+}
+
+case "$1" in
+  start)         start ;;
+  stop)          stop ;;
+  restart)       restart ;;
+  status)        status ;;
+  reload)        touch $MOCK_STATE/control_reload ;;
+  tidy)          touch $MOCK_STATE/control_tidy ;;
+  pre-build)     touch $MOCK_STATE/control_pre_build ;;
+  build)         build ;;
+  deploy)        touch $MOCK_STATE/control_deploy ;;
+  post-deploy)   touch $MOCK_STATE/control_post_deploy ;;
+  pre-snapshot)  touch $MOCK_STATE/control_pre_snapshot ;;
+  post-snapshot) touch $MOCK_STATE/control_post_snapshot ;;
+  pre-restore)   touch $MOCK_STATE/control_pre_restore ;;
+  post-restore)  touch $MOCK_STATE/control_post_restore ;;
+  pre-receive)   touch $MOCK_STATE/control_pre_receive ;;
+  update-configuration) touch $MOCK_STATE/control_update_configuration ;;
+  *)           exit 0
+esac
+
+exit 0
+
+echo "CONTROL_SCRIPT_DONE"
