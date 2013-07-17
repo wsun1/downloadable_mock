@@ -35,9 +35,9 @@ Publishes:
   publish-gear-endpoint:
     Type: "NET_TCP:gear-endpoint-info"
 Subscribes:
-   set-all:
-     Type: "ENV:*"
-     Required: false
+#   set-all:
+#     Type: "ENV:*"
+#     Required: false
 Endpoints:
   - Private-IP-Name:   EXAMPLE_IP1
     Private-Port-Name: EXAMPLE_PORT1
