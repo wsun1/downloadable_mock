@@ -37,7 +37,7 @@ Publishes:
 Subscribes:
    set-all:
      Type: "ENV:*"
-     Required: fasle
+     Required: true
 Endpoints:
   - Private-IP-Name:   EXAMPLE_IP1
     Private-Port-Name: EXAMPLE_PORT1
