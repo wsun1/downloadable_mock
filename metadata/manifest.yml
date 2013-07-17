@@ -8,10 +8,10 @@ License: ASL 2.0
 Vendor: 123_test_bmeng
 Cartridge-Version: 0.0.1
 Cartridge-Vendor: 123_test_openshift
-#Source-Url: https://github.com/bmeng/downloadable-mock.git
+Source-Url: https://github.com/wsun1/downloadable_mock.git
 #Source-Url: https://github.com/bmeng/downloadable-mock/raw/master/downloadable-mock.tar
 #Source-Url: https://github.com/bmeng/downloadable-mock/raw/master/downloadable-mock.tar.gz
-Source-Url: https://github.com/bmeng/downloadable-mock/raw/master/downloadable-mock.zip
+#Source-Url: https://github.com/bmeng/downloadable-mock/raw/master/downloadable-mock.zip
 #Source-Url: https://github.com/bmeng/downloadable-mock/raw/master/test.zip
 #Source-Url: file:///root/downloadable-mock
 Categories:
@@ -34,12 +34,8 @@ Publishes:
   publish-gear-endpoint:
     Type: "NET_TCP:gear-endpoint-info"
 Subscribes:
-  set-db-connection-info:
-    Type: "ENV:NET_TCP:db:connection-info"
-    Required: false
-  set-nosql-db-connection-info:
-    Type: "ENV:NET_TCP:nosqldb:connection-info"
-    Required: false
+   set-all:
+     Type: "ENV:*"
 Endpoints:
   - Private-IP-Name:   EXAMPLE_IP1
     Private-Port-Name: EXAMPLE_PORT1
