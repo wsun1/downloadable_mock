@@ -8,12 +8,13 @@ License: ASL 2.0
 Vendor: test_wsun
 Cartridge-Version: 0.0.1
 Cartridge-Vendor: 123_test_openshift
-Source-Url: https://github.com/wsun1/downloadable_mock.git
+#Source-Url: https://github.com/wsun1/downloadable_mock.git
 #Source-Url: https://github.com/bmeng/downloadable-mock/raw/master/downloadable-mock.tar
 #Source-Url: https://github.com/bmeng/downloadable-mock/raw/master/downloadable-mock.tar.gz
 #Source-Url: https://github.com/bmeng/downloadable-mock/raw/master/downloadable-mock.zip
-#Source-Url: https://github.com/bmeng/downloadable-mock/raw/master/test.zip
+Source-Url: https://github.com/bmeng/downloadable-mock/raw/master/test.zip
 #Source-Url: file:///root/downloadable-mock
+Source-Md5: 1cfe59845902cd9dc125dc11fb136837
 Categories:
   - service
   - web_framework
